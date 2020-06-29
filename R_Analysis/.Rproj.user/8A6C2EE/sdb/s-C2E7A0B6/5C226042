@@ -1,0 +1,18 @@
+{
+    "contents" : "setwd()\n\nsetwd('/Users/adrianapaza/Documents/ResearchProjects/Fluency_framing')\ndf<-read.csv('Data/Post_PCA_data.csv')\n\ndf$total_signature_count\ndf$log_signatures_1<-log(df$total_signature_count+1)\nattach(df)\nhist(as.integer(df$is_victory))\n\nmodel1<-lm( I(log(total_signature_count+1))~ PCA1 +PCA2+PCA3+PCA4+PCA5,data=df)\n\nsummary(model1)\n\n\ndf$title\ndf$ask\ndf$media.type\ndf$targeting_description\n\ndf$weekly_signup_count\n\nmodel2<-glm( I(as.integer(is_victory)-1)~  PCA1 +PCA2+PCA3+PCA4+PCA5+I(log(num_words))+user.locale\n             ,data=df,family=binomial(link='logit'))\nsummary(model2)\n\nmodel1<-lm( I(log(total_signature_count+1))~ PCA1 +PCA2+PCA3+PCA4+I(log(num_words)),data=df)\n\nsummary(model1)\nmodel_shares<-lm(I(log(total_share_count+1)) ~ PCA1 +PCA2+PCA3+PCA4+I(log(num_words)),data=df)\n\nsummary(model_shares)\n\nlibrary(stargazer)\nstargazer(model1,model_shares)\n\ndf$user.locale\n\ndf$total_share_count\ndf$is_verified_victory\n\ndf$user.country_code\n?glm\ncolnames(df)\ndf$tags\ndf$is_victory\nas.integer(df$is_victory)\ndf$PCA1\nhist(df$PCA1)\n",
+    "created" : 1593232826264.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1069247418",
+    "id" : "5C226042",
+    "lastKnownWriteTime" : 1593457400,
+    "path" : "~/Documents/ResearchProjects/Fluency_framing/R_Analysis/PCA_regressions.R",
+    "project_path" : "PCA_regressions.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "type" : "r_source"
+}
